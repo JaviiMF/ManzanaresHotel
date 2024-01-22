@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ClienteController {
 	
 	@GetMapping("/login")
-	public String crear() {
+	public String loggear() {
 		return "/views/clientes/login";
 	}
 }
