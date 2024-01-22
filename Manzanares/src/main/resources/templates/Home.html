@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantillas/template :: head">
 </head>
 <body>
-	<h1>Hola desde Springboot</h1>
-
+	<header th:replace="plantillas/template :: header"></header>
+	
+	<div class="container">
+	<h1>Hola desde SpringBoooot</h1>
+	</div>
+	
+	<footer th:replace="plantillas/template :: footer"></footer>
 </body>
 </html>
