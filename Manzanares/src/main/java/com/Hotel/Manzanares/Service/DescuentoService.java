@@ -12,7 +12,7 @@ public interface DescuentoService {
 
     void createDescuento(Descuento descuento);
 
-    void deleteDescuento(String descripcion);
+    void deleteDescuento(Long id);
 
-    void updateDescuento(String descripcion,Descuento descuento);
+    void updateDescuento(Long id,Descuento descuento);
 }

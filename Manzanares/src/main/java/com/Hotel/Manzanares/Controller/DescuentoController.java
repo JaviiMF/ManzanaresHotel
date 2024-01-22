@@ -25,12 +25,12 @@ public class DescuentoController {
         descuentoService.createDescuento(descuento);
     }
 
-    @DeleteMapping("/deleteDescuento/{descripcion}")
-    public void deleteDescuento(@PathVariable String descripcion){
-        descuentoService.deleteDescuento(descripcion);
+    @DeleteMapping("/deleteDescuento/{id}")
+    public void deleteDescuento(@PathVariable Long id){
+        descuentoService.deleteDescuento(id);
     }
-    @PutMapping("/updateDescuento/{descripcion}")
-    public void updateDescuento(@PathVariable String descripcion,@RequestBody Descuento descuento ) {
-        descuentoService.updateDescuento(descripcion,descuento);
+    @PutMapping("/updateDescuento/{id}")
+    public void updateDescuento(@PathVariable Long id,@RequestBody Descuento descuento ) {
+        descuentoService.updateDescuento(id,descuento);
     }
 }

@@ -12,7 +12,7 @@ public interface ExtrasService {
 
     void createExtras(Extras extras);
 
-    void deleteExtras(String descripcion);
+    void deleteExtras(Long id);
 
-    void updateExtras(String descripcion, Extras extra);
+    void updateExtras(Long id, Extras extra);
 }

@@ -5,10 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface ExtrasRepository extends JpaRepository<Extras, Long> {
 
-    public void deleteByDescripcion(@Param("descripcion") String descripcion);
+    public void deleteById(@Param("id") Long id);
 
-    public Extras findByDescripcion(String descripcion);
+    public Optional<Extras> findExtrasById(Long id);
 }

@@ -12,7 +12,7 @@ public interface ServicioService {
 
     void createService(Servicio servicio);
 
-    void deleteServicio(String descripcion);
+    void deleteServicio(Long id);
 
-    void updateServicio(String descripcion, Servicio servicio);
+    void updateServicio(Long id, Servicio servicio);
 }

@@ -11,7 +11,7 @@ public interface GamaService {
 
     void createGama(Gama gama);
 
-    void deleteGama(String nombre);
+    void deleteGama(Long id);
 
-    void updateGama(String nombre, Gama gama);
+    void updateGama(Long id, Gama gama);
 }

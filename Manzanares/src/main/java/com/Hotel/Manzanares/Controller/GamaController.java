@@ -19,11 +19,11 @@ public class GamaController {
     @PostMapping("/createGama")
     public void createGama(@RequestBody Gama gama){gamaService.createGama(gama);}
 
-    @DeleteMapping("/deleteGama/{nombre}")
-    public void deleteGama(@PathVariable String nombre){gamaService.deleteGama(nombre);}
+    @DeleteMapping("/deleteGama/{id}")
+    public void deleteGama(@PathVariable Long id){gamaService.deleteGama(id);}
 
-    @PutMapping("/updateGama/{nombre}")
-    public void updateGama(@PathVariable String nombre,@RequestBody Gama gama){
-        gamaService.updateGama(nombre,gama);
+    @PutMapping("/updateGama/{id}")
+    public void updateGama(@PathVariable Long id,@RequestBody Gama gama){
+        gamaService.updateGama(id,gama);
     }
 }

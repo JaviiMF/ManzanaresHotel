@@ -16,7 +16,7 @@ public class ExtrasServiceImpl implements ExtrasService {
     private final ExtrasRepository extrasRepository;
     @Override
     public Optional<Extras> getExtras(Long id) {
-        return extrasRepository.findById(id);
+        return extrasRepository.findExtrasById(id);
     }
 
     @Override
@@ -30,28 +30,33 @@ public class ExtrasServiceImpl implements ExtrasService {
 
     @Override
     @Transactional
-    public void deleteExtras(String descripcion) {
+    public void deleteExtras(Long id) {
         try{
-            extrasRepository.deleteByDescripcion(descripcion);
+            extrasRepository.deleteById(id);
         }catch (Exception e){
             System.out.println("Error al eliminar el extra: "+e.getMessage());
         }
     }
 
     @Override
-    public void updateExtras(String descripcion, Extras extra) {
-        try{
-            Extras elemento= extrasRepository.findByDescripcion(descripcion);
-            if(elemento!=null){
+    public void updateExtras(Long id, Extras extra) {
+        try {
+            Optional<Extras> optionalElemento = extrasRepository.findExtrasById(id);
+
+            if (optionalElemento.isPresent()) {
+                Extras elemento = optionalElemento.get();
                 elemento.setDescripcion(extra.getDescripcion());
                 elemento.setPrecio(extra.getPrecio());
 
                 extrasRepository.save(elemento);
+            } else {
+                System.out.println("No se encontró el extra con ID: " + id);
+                // Puedes agregar un manejo adicional si el elemento no está presente
             }
 
-        }catch (Exception e){
-            System.out.println("Error al modificar el extra: "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error al modificar el extra: " + e.getMessage());
+            // Puedes manejar la excepción de una manera específica si es necesario
         }
-
     }
 }

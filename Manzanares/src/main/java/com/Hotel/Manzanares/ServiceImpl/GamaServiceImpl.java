@@ -16,7 +16,7 @@ public class GamaServiceImpl implements GamaService {
     private final GamaRepository gamaRepository;
     @Override
     public Optional<Gama> getGama(Long id) {
-        return gamaRepository.findById(id);
+        return gamaRepository.findGamaById(id);
     }
 
     @Override
@@ -30,27 +30,33 @@ public class GamaServiceImpl implements GamaService {
 
     @Override
     @Transactional
-    public void deleteGama(String nombre) {
+    public void deleteGama(Long id) {
         try{
-            gamaRepository.deleteGamaByNombre(nombre);
+            gamaRepository.deleteGamaById(id);
         }catch (Exception e){
             System.out.println("Error al grabar la gama" + e.getMessage());
         }
     }
 
     @Override
-    public void updateGama(String nombre, Gama gama) {
-        try{
-            Gama elemento = gamaRepository.findByNombre(nombre);
-            if(elemento!=null){
+    public void updateGama(Long id, Gama gama) {
+        Optional<Gama> optionalElemento = gamaRepository.findGamaById(id);
+
+        try {
+            if (optionalElemento.isPresent()) {
+                Gama elemento = optionalElemento.get();
                 elemento.setNombre(gama.getNombre());
                 elemento.setDescripcion(gama.getDescripcion());
                 elemento.setPrecio(gama.getPrecio());
 
                 gamaRepository.save(elemento);
+            } else {
+                System.out.println("No se encontró la gama con ID: " + id);
+                // Puedes agregar un manejo adicional si el elemento no está presente
             }
-        }catch (Exception e){
-            System.out.println("Error al modificar gama" + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error al modificar la gama: " + e.getMessage());
+            // Puedes manejar la excepción de una manera específica si es necesario
         }
 
     }

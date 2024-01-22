@@ -23,14 +23,14 @@ public class ServicioController {
     public void createServicio(@RequestBody Servicio servicio){
         servicioService.createService(servicio);
     }
-    @DeleteMapping("/deleteServicio/{descripcion}")
-    public void deleteServicio(@PathVariable String descripcion){
-        servicioService.deleteServicio(descripcion);
+    @DeleteMapping("/deleteServicio/{id}")
+    public void deleteServicio(@PathVariable Long id){
+        servicioService.deleteServicio(id);
     }
 
-    @PutMapping("/updateServicio/{descripcion}")
-    public void updateServicio(@PathVariable String descripcion,@RequestBody Servicio servicio){
-        servicioService.updateServicio(descripcion,servicio);
+    @PutMapping("/updateServicio/{id}")
+    public void updateServicio(@PathVariable Long id,@RequestBody Servicio servicio){
+        servicioService.updateServicio(id,servicio);
     }
 
 }

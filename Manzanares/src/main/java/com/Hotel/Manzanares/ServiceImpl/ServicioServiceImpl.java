@@ -31,10 +31,10 @@ public class ServicioServiceImpl implements ServicioService {
 
     @Override
     @Transactional
-    public void deleteServicio(String descripcion) {
+    public void deleteServicio(Long id) {
 
         try{
-            servicioRepository.deleteByDescripcion(descripcion);
+            servicioRepository.deleteServicioById(id);
         }catch (Exception e){
             System.out.println("Error al eliminar el servcio" + e.getMessage());
         }
@@ -42,9 +42,9 @@ public class ServicioServiceImpl implements ServicioService {
     }
 
     @Override
-    public void updateServicio(String descripcion, Servicio servicio) {
+    public void updateServicio(Long id, Servicio servicio) {
         try{
-            Servicio elemento = servicioRepository.findServicioByDescripcion(descripcion);
+            Servicio elemento = servicioRepository.findServicioById(id);
             if(elemento!=null){
                 elemento.setDescripcion(servicio.getDescripcion());
                 elemento.setPrecio(servicio.getPrecio());

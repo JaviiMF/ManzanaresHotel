@@ -24,13 +24,13 @@ public class ExtrasController {
         extrasService.createExtras(extras);
     }
 
-    @DeleteMapping("/deleteExtras/{descripcion}")
-    public void deleteExtras(@PathVariable String descripcion){
-        extrasService.deleteExtras(descripcion);
+    @DeleteMapping("/deleteExtras/{id}")
+    public void deleteExtras(@PathVariable Long id){
+        extrasService.deleteExtras(id);
     }
 
-    @PutMapping("/updateExtras/{descripcion}")
-    public void updateExtras(@PathVariable String descripcion,@RequestBody Extras extras){
-        extrasService.updateExtras(descripcion,extras);
+    @PutMapping("/updateExtras/{id}")
+    public void updateExtras(@PathVariable Long id,@RequestBody Extras extras){
+        extrasService.updateExtras(id,extras);
     }
 }

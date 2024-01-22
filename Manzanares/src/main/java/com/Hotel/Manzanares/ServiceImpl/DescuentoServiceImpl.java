@@ -16,7 +16,7 @@ public class DescuentoServiceImpl implements DescuentoService {
     private final DescuentoRepository descuentoRepository;
     @Override
     public Optional<Descuento> getDescuento(Long id) {
-        return descuentoRepository.findById(id);
+        return descuentoRepository.findDescuentoById(id);
     }
 
     @Override
@@ -30,27 +30,32 @@ public class DescuentoServiceImpl implements DescuentoService {
 
     @Override
     @Transactional
-    public void deleteDescuento(String descripcion) {
+    public void deleteDescuento(Long id) {
         try{
-            descuentoRepository.deleteByDescripcion(descripcion);
+            descuentoRepository.deleteDescuentoBy(id);
         }catch (Exception e){
             System.out.println("Error al eliminar el descuento: "+e.getMessage());
         }
     }
 
     @Override
-    public void updateDescuento(String descripcion, Descuento descuento) {
-         Descuento elemeneto = descuentoRepository.findByDescripcion(descripcion);
-        try{
-            if(elemeneto!=null){
+    public void updateDescuento(Long id, Descuento descuento) {
+        Optional<Descuento> optionalElemento = descuentoRepository.findDescuentoById(id);
 
-                elemeneto.setDescripcion(descuento.getDescripcion());
-                elemeneto.setPorcentaje(descuento.getPorcentaje());
+        try {
+            if (optionalElemento.isPresent()) {
+                Descuento elemento = optionalElemento.get();
+                elemento.setDescripcion(descuento.getDescripcion());
+                elemento.setPorcentaje(descuento.getPorcentaje());
 
-                descuentoRepository.save(elemeneto);
+                descuentoRepository.save(elemento);
+            } else {
+                System.out.println("No se encontró el descuento con ID: " + id);
+                // Puedes agregar un manejo adicional si el elemento no está presente
             }
-        }catch (Exception e){
-            System.out.println("Error al modificar el descuento: "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error al modificar el descuento: " + e.getMessage());
+            // Puedes manejar la excepción de una manera específica si es necesario
         }
     }
 }

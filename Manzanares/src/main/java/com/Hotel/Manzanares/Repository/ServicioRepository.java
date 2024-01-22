@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ServicioRepository extends JpaRepository<Servicio, Long> {
-    public void deleteByDescripcion(@Param("descripcion") String descripcion);
+    public void deleteServicioById(@Param("id") Long id);
 
-    public Servicio findServicioByDescripcion(String descripcion);
+    public Servicio findServicioById(Long id);
 }
