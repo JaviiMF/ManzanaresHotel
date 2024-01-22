@@ -10,33 +10,46 @@
 	<header th:fragment="header">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container">
-				<a class="navbar-brand" href="#">
-					<strong>MyLogo</strong>
+				<ul class="navbar-nav me-3 mb-2 mb-lg-0">
+					<!-- Add me-2 (margin-right) class for spacing -->
+					<li class="nav-item"><a class="nav-link" aria-current="page"
+						th:href="@{/login}">Login</a></li>
+				</ul>
+
+				<a class="navbar-brand" href="#"> <strong>Manzanares Hotel</strong>
 				</a>
+
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"
 					aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				
+
 				<!--  ENLACES DEL MENU -->
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" th:href="@{/index}">Inicio</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Clientes</a></li>
+							aria-current="page" th:href="@{/index}">Home</a></li>
+						<li class="nav-item"><a class="nav-link" aria-current="page"
+							th:href="@{/index}">Servicios</a></li>
+						<li class="nav-item"><a class="nav-link" aria-current="page"
+							th:href="@{/index}">Habitaciones</a></li>
+						<li class="nav-item"><a class="nav-link" aria-current="page"
+							th:href="@{/index}">Contáctanos</a></li>
+						<!-- <li class="nav-item"><a class="nav-link" href="#">Clientes</a></li> -->
 					</ul>
 				</div>
 			</div>
 		</nav>
-
 	</header>
+
 	<!-- CONTENIDO -->
 	<div class="container"></div>
 
 	<!-- PIE DE PAGINA -->
-	<footer th:fragment="footer" class="bg-dark text-center text-white fixed-bottom">
+	<footer th:fragment="footer"
+		class="bg-dark text-center text-white fixed-bottom">
 
 		<div class="container">
 			<p>Copyright Javacode503 &copy; -2019</p>
