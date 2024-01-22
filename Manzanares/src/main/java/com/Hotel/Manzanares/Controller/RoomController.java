@@ -1,22 +1,27 @@
 package com.Hotel.Manzanares.Controller;
 
 import com.Hotel.Manzanares.Entity.Habitacion;
-import com.Hotel.Manzanares.Repository.RoomRepository;
+import com.Hotel.Manzanares.Request.DispRequest;
+import com.Hotel.Manzanares.Service.RoomService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(("/room"))
 @AllArgsConstructor
 public class RoomController {
 
-    private final RoomRepository roomRepository;
+    private final RoomService roomService;
     @PostMapping("/createHabitacion")
     public void createHabitacion(@RequestBody Habitacion habitacion){
-        roomRepository.save(habitacion);
+        roomService.createRoom(habitacion);
     }
+
+    @DeleteMapping("/deleteHabitacion/{id}")
+    public void deleteHabitacion(@PathVariable Long id) { roomService.deleteRoom(id); }
+
+    @PostMapping("/disponibles")
+    public List<Habitacion> getHabitacionesDisponibles(@RequestBody DispRequest dispRequest) {return roomService.getHabitacionesDisponibles(dispRequest); }
 }

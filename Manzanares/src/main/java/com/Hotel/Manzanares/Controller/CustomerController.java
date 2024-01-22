@@ -26,7 +26,7 @@ public class CustomerController {
     }
 
     @DeleteMapping("/deleteUsuario/{dni}")
-    public void createUsuario(@PathVariable String dni){
+    public void deleteUsuario(@PathVariable String dni){
         customerService.deleteUsuario(dni);
     }
 
