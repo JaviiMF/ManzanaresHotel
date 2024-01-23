@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.Hotel.Manzanares.Repository.CustomerRepository;
 
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -78,5 +79,10 @@ public class CustomerServiceImpl implements CustomerService {
        }
 
         return encontrado;
+    }
+
+    @Override
+    public List<Usuario> getAllUsuarios() {
+        return customerRepository.findAll();
     }
 }

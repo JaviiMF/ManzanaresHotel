@@ -3,6 +3,8 @@ package com.Hotel.Manzanares.Controller;
 import com.Hotel.Manzanares.Entity.Usuario;
 import com.Hotel.Manzanares.Request.LoginRequest;
 import com.Hotel.Manzanares.Service.CustomerService;
+
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,11 @@ public class CustomerController {
     @PutMapping("/updateUsuario/{dni}")
     public void updateUsuario(@PathVariable String dni, @RequestBody Usuario usuario){
         customerService.updateUsuario(dni,usuario);
+    }
+
+    @GetMapping("/all")
+    public List<Usuario> getAllUsuarios(){
+        return customerService.getAllUsuarios();
     }
 
     @PostMapping("/login")

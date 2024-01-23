@@ -72,4 +72,14 @@ public class ReserveServiceImpl implements ReserveService {
 
         return respuesta;
     }
+
+    @Override
+    public Boolean payReserve() {
+        return true;
+    }
+
+    @Override
+    public List<Reserva> getReservasActivas() {
+        return reserveRepository.findAll();
+    }
 }

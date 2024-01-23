@@ -16,7 +16,7 @@
 				acceder a todos tus datos.</p>
 		</div>
 
-		<form class="form-horizontal" onsubmit="return validarFormulario()">
+		<form class="form-horizontal" onsubmit="return enviarFormulario()">
 			<!-- Iniciar Sesión Form -->
 			<div class="form-group text-center">
 				<h2>Iniciar Sesión</h2>
@@ -35,8 +35,34 @@
 			</div>
 		</form>
 
-		<script>
-    function validarFormulario() {
+		<script th:inline="javascript">
+
+			function enviarFormulario() {
+				var email = "jmf64@gcloud.ua.es";
+				var password = "123456";
+
+				var loginRequest = {
+					email: email,
+					password: password
+				};
+
+				$.ajax({
+					type: "POST",
+					contentType: "application/json",
+					url: "http://localhost:8081/customer/login",
+					data: JSON.stringify(loginRequest),
+					dataType: 'json',
+					success: function (response) {
+						// Manejar la respuesta del servidor según tus necesidades
+						console.log(response);
+					},
+					error: function (error) {
+						// Manejar errores si es necesario
+						console.error(error);
+					}
+				});
+			}
+    /*function validarFormulario() {
         var email = document.getElementById("loginEmail").value;
         var password = document.getElementById("loginPassword").value;
 
@@ -48,7 +74,7 @@
         // Puedes agregar más validaciones según tus necesidades.
 
         return true; // Envía el formulario si todas las validaciones son exitosas.
-    }
+    }*/
 </script>
 
 		<form class="form-horizontal mt-4" onsubmit="return validarRegistro()">
