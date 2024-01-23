@@ -1,5 +1,6 @@
 package com.Hotel.Manzanares.Controller;
 
+import org.springframework.ui.Model;
 import com.Hotel.Manzanares.Entity.Usuario;
 import com.Hotel.Manzanares.Service.CustomerService;
 import java.util.Optional;
@@ -18,6 +19,12 @@ public class CustomerController {
     @GetMapping("/{id}")
     public Optional<Usuario> getUsuario(@PathVariable Long id){
         return customerService.getUsuario(id);
+    }
+
+    @GetMapping("/Usuarios")
+    public String listaUsuarios()
+    {
+       return "ListUsuario";
     }
 
     @PostMapping("/createUsuario")
