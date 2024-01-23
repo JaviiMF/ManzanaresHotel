@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="plantillas/template :: head"></head>
+<head th:replace="plantillas/template :: head">
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
 
 <body>
 	<header th:replace="plantillas/template :: header">
@@ -36,20 +38,46 @@
 		</form>
 
 		<script>
-    function validarFormulario() {
-        var email = document.getElementById("loginEmail").value;
-        var password = document.getElementById("loginPassword").value;
+			function validarFormulario() {
+				var email = $("#loginEmail").val();
+				var password = $("#loginPassword").val();
 
-        if (email === "" || password === "") {
-            alert("Por favor, complete todos los campos.");
-            return false;
-        }
+				if (email === "" || password === "") {
+					alert("Por favor, complete todos los campos.");
+					return false;
+				}
 
-        // Puedes agregar más validaciones según tus necesidades.
+				// Llama a la función de login utilizando AJAX y jQuery
+				login(email, password);
 
-        return true; // Envía el formulario si todas las validaciones son exitosas.
-    }
-</script>
+				return false; // Evita que el formulario se envíe automáticamente.
+			}
+
+			function login(usuario, pass) {
+				var requestData = {
+					"usuario": usuario,
+					"pass": pass
+				};
+
+				$.ajax({
+					type: "POST",
+					url: "/customer/login",
+					contentType: "application/json",
+					data: JSON.stringify(requestData),
+					success: function (response) {
+						if (response) {
+							alert("Login exitoso");
+							// Puedes redirigir a otra página o hacer algo más después del login exitoso
+						} else {
+							alert("Login fallido");
+						}
+					},
+					error: function (error) {
+						console.error("Error en la petición:", error);
+					}
+				});
+			}
+		</script>
 
 		<form class="form-horizontal mt-4" onsubmit="return validarRegistro()">
 			<!-- Registrarse Form -->
@@ -129,8 +157,7 @@
 						class="form-check-label" for="recibirNotificaciones">Deseo
 						recibir notificaciones</label>
 				</div>
-				<button type="submit" class="btn btn-primary mt-3 mb-3">Darse
-					de alta</button>
+				<button type="button" class="btn btn-primary mt-3 mb-3" onclick="validarRegistro()">Darse de alta</button>
 			</div>
 		</form>
 
@@ -154,12 +181,38 @@
             return false;
         }
 
-        // Puedes agregar más validaciones según tus necesidades.
+        // Crear un objeto Usuario con los datos del formulario
+		var usuario = {
+			email: email,
+			contrasena: password,
+			nombre: nombre,
+			telefono: telefono,
+			dni: nif,
+			tipo: "cliente"
+		}
 
-        return true; // Envía el formulario si todas las validaciones son exitosas.
+		// Realizar la solicitud POST utilizando fetch
+		fetch('/customer/createUsuario', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(usuario),
+		})
+				.then(response => response.json())
+				.then(data => {
+					// Aquí puedes manejar la respuesta del servidor después de crear el usuario
+					console.log('Usuario creado con éxito:', data);
+					alert('Usuario creado con éxito');
+				})
+				.catch(error => {
+					console.error('Error al crear el usuario:', error);
+					alert('Error al crear el usuario');
+				});
+
+        return false; // Evita que el formulario se envíe automáticamente
     }
 </script>
-
 
 	</div>
 
