@@ -11,7 +11,7 @@
 		<h2>HOTEL</h2>
 		<p>Reserva tu estancia hoy y disfruta de una experiencia de hotel
 			redefinida con las tarifas más asequibles.</p>
-		<button type="submit" class="btn btn-primary mt-3">Reserva ya</button>
+		<a th:href="@{/views/hotel/habitaciones}" class="btn btn-primary mt-1">Reserva ya</a>
 
 		<div class="text-center pt-4">
 			<p>
@@ -30,7 +30,8 @@
 							todas tus<br> preocupaciones. Reserva hoy la habitación<br>
 							que mejor se habitue a tus preferencias.
 						</p>
-						<button type="submit" class="btn btn-primary mt-1">Explorar habitaciones</button>
+						<a th:href="@{/views/hotel/habitaciones}" class="btn btn-primary mt-1">Explorar habitaciones</a>
+
 					</td>
 					
 					<td><img src="https://i.ibb.co/FKXyp0p/hotel1.jpg" alt="hotel1" border="0"></td>
@@ -51,7 +52,7 @@
 							mercado.<br> Descubre nuestras diferentes ofertas para<br>
 							encontrar tu próximo plan perfecto.
 						</p>
-						<button type="submit" class="btn btn-primary mt-1">Explorar servicios</button>
+						<a th:href="@{/views/hotel/servicios}" class="btn btn-primary mt-1">Explorar servicios</a>
 					</td>
 
 					<td><img src="https://i.ibb.co/6487F6X/hotel2.jpg" alt="hotel2" border="0"></td>
