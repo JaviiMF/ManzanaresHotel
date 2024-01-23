@@ -1,6 +1,7 @@
 package com.Hotel.Manzanares.ServiceImpl;
 
 import com.Hotel.Manzanares.Entity.Usuario;
+import com.Hotel.Manzanares.Request.LoginRequest;
 import com.Hotel.Manzanares.Service.CustomerService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -61,5 +62,21 @@ public class CustomerServiceImpl implements CustomerService {
         } catch (Exception e){
             System.out.println("Error al modificar usuario" + e.getMessage());
         }
+    }
+
+    @Override
+    public Boolean loginUsuario(LoginRequest loginRequest) {
+        Boolean encontrado = false;
+
+       try{
+           Usuario usuario = customerRepository.findByUsuarioAndPass(loginRequest.getUsuario(), loginRequest.getPass());
+           if(usuario != null){
+               encontrado = true;
+           }
+       } catch (Exception e) {
+           System.out.println("Error en el login" + e.getMessage());
+       }
+
+        return encontrado;
     }
 }

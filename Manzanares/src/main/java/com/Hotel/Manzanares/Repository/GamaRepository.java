@@ -11,4 +11,6 @@ public interface GamaRepository extends JpaRepository<Gama, Long> {
     public void deleteGamaById(@Param("id") Long id);
 
     public Optional<Gama> findGamaById(Long id);
+
+    Optional<Gama> findByNombre(String nombre);
 }

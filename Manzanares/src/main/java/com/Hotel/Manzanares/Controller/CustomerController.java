@@ -1,6 +1,7 @@
 package com.Hotel.Manzanares.Controller;
 
 import com.Hotel.Manzanares.Entity.Usuario;
+import com.Hotel.Manzanares.Request.LoginRequest;
 import com.Hotel.Manzanares.Service.CustomerService;
 import java.util.Optional;
 
@@ -33,5 +34,10 @@ public class CustomerController {
     @PutMapping("/updateUsuario/{dni}")
     public void updateUsuario(@PathVariable String dni, @RequestBody Usuario usuario){
         customerService.updateUsuario(dni,usuario);
+    }
+
+    @PostMapping("/login")
+    public Boolean loginUsuario(@RequestBody LoginRequest loginRequest){
+        return customerService.loginUsuario(loginRequest);
     }
 }

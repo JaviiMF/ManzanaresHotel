@@ -1,6 +1,7 @@
 package com.Hotel.Manzanares.Service;
 
 import com.Hotel.Manzanares.Entity.Usuario;
+import com.Hotel.Manzanares.Request.LoginRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,4 +15,6 @@ public interface CustomerService {
     void deleteUsuario(String dni);
 
     void updateUsuario(String dni, Usuario usuario);
+
+    Boolean loginUsuario(LoginRequest loginRequest);
 }

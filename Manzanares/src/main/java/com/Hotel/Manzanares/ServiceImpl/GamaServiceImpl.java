@@ -60,4 +60,9 @@ public class GamaServiceImpl implements GamaService {
         }
 
     }
+
+    @Override
+    public Optional<Gama> getGamaByNombre(String nombre) {
+        return gamaRepository.findByNombre(nombre);
+    }
 }

@@ -17,8 +17,7 @@ public class ReserveController {
 
     @PostMapping("/createReserve")
     public String createReserve(@RequestBody ReserveRequest reserveRequest){
-
-        return null;
+        return reserveService.createReserve(reserveRequest);
     }
 
 }

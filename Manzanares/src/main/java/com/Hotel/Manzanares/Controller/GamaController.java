@@ -26,4 +26,7 @@ public class GamaController {
     public void updateGama(@PathVariable Long id,@RequestBody Gama gama){
         gamaService.updateGama(id,gama);
     }
+
+    @GetMapping("/getGamaByNombre/{nombre}")
+    public Optional<Gama> getGamaByNombre(@PathVariable String nombre){return gamaService.getGamaByNombre(nombre);}
 }
