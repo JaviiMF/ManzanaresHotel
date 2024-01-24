@@ -4,11 +4,12 @@ package com.Hotel.Manzanares.Controller;
 import com.Hotel.Manzanares.Entity.Gama;
 import com.Hotel.Manzanares.Service.GamaService;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping(("/gama"))
 @AllArgsConstructor
 public class GamaController {

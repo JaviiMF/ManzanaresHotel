@@ -4,11 +4,12 @@ import com.Hotel.Manzanares.Entity.Habitacion;
 import com.Hotel.Manzanares.Request.DispRequest;
 import com.Hotel.Manzanares.Service.RoomService;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping(("/room"))
 @AllArgsConstructor
 public class RoomController {

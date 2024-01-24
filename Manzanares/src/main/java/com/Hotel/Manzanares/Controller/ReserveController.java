@@ -4,11 +4,12 @@ import com.Hotel.Manzanares.Entity.Reserva;
 import com.Hotel.Manzanares.Request.ReserveRequest;
 import com.Hotel.Manzanares.Service.ReserveService;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping(("/reserve"))
 @AllArgsConstructor
 public class ReserveController {

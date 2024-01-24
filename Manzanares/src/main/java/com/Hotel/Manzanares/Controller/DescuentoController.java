@@ -4,12 +4,13 @@ package com.Hotel.Manzanares.Controller;
 import com.Hotel.Manzanares.Entity.Descuento;
 import com.Hotel.Manzanares.Service.DescuentoService;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping(("/descuento"))
 @AllArgsConstructor
 public class DescuentoController {

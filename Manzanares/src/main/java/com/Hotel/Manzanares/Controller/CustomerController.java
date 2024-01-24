@@ -34,7 +34,7 @@ public class CustomerController {
         customerService.createUsuario(usuario);
         return "/views/hotel/habitaciones";
     }
-    @GetMapping("/login")
+    @GetMapping("/registro")
     public String mostrarFormularioLogin(Model model) {
         System.out.println("Holaaaaaaaaaaa");
         model.addAttribute("usuario", new Usuario());
