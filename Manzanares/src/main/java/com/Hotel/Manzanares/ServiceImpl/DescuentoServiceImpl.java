@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -57,5 +58,10 @@ public class DescuentoServiceImpl implements DescuentoService {
             System.out.println("Error al modificar el descuento: " + e.getMessage());
             // Puedes manejar la excepción de una manera específica si es necesario
         }
+    }
+
+    @Override
+    public List<Descuento> getAllDescuentos() {
+        return descuentoRepository.findAll();
     }
 }

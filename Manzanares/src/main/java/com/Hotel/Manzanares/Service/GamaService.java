@@ -14,4 +14,6 @@ public interface GamaService {
     void deleteGama(Long id);
 
     void updateGama(Long id, Gama gama);
+
+    Optional<Gama> getGamaByNombre(String nombre);
 }

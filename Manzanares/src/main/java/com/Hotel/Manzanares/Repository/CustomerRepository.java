@@ -15,4 +15,7 @@ public interface CustomerRepository extends JpaRepository<Usuario, Long> {
     public void deleteByEmail(@Param("dni") String dni);
 
     public Usuario findByDni(String dni);
+
+    @Query("select u from Usuario u where u.email=:usuario and u.contrasena=:pass")
+    Usuario findByUsuarioAndPass(@Param("usuario") String usuario, @Param("pass") String pass);
 }

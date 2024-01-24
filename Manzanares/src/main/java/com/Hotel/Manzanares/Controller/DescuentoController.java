@@ -6,6 +6,7 @@ import com.Hotel.Manzanares.Service.DescuentoService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -32,5 +33,9 @@ public class DescuentoController {
     @PutMapping("/updateDescuento/{id}")
     public void updateDescuento(@PathVariable Long id,@RequestBody Descuento descuento ) {
         descuentoService.updateDescuento(id,descuento);
+    }
+    @GetMapping("/allDescuentos")
+    public List<Descuento> getAllDescuentos(){
+        return descuentoService.getAllDescuentos();
     }
 }

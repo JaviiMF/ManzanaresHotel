@@ -1,6 +1,7 @@
 package com.Hotel.Manzanares.ServiceImpl;
 
 import com.Hotel.Manzanares.Entity.Usuario;
+import com.Hotel.Manzanares.Request.LoginRequest;
 import com.Hotel.Manzanares.Service.CustomerService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.Hotel.Manzanares.Repository.CustomerRepository;
 
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -61,5 +63,26 @@ public class CustomerServiceImpl implements CustomerService {
         } catch (Exception e){
             System.out.println("Error al modificar usuario" + e.getMessage());
         }
+    }
+
+    @Override
+    public Boolean loginUsuario(LoginRequest loginRequest) {
+        Boolean encontrado = false;
+
+       try{
+           Usuario usuario = customerRepository.findByUsuarioAndPass(loginRequest.getUsuario(), loginRequest.getPass());
+           if(usuario != null){
+               encontrado = true;
+           }
+       } catch (Exception e) {
+           System.out.println("Error en el login" + e.getMessage());
+       }
+
+        return encontrado;
+    }
+
+    @Override
+    public List<Usuario> getAllUsuarios() {
+        return customerRepository.findAll();
     }
 }

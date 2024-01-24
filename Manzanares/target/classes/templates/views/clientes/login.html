@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantillas/template :: head"></head>
+
+<body>
+	<header th:replace="plantillas/template :: header">
+		<h1 class="text-center">Inicia Sesión</h1>
+	</header>
+
+	<div class="container">
+
+		<div class="text-center pt-4">
+			<strong>Inicia Sesión / Regístrate</strong>
+			<p>Ya seas cliente o miembro del staff, inicia sesión para
+				acceder a todos tus datos.</p>
+		</div>
+
+		<form class="form-horizontal" onsubmit="return enviarFormulario()">
+			<!-- Iniciar Sesión Form -->
+			<div class="form-group text-center">
+				<h2>Iniciar Sesión</h2>
+				<div class="form-group">
+					<label for="loginEmail">Email</label> <input type="email"
+						class="form-control" id="loginEmail" aria-describedby="emailHelp"
+						placeholder="Email" required>
+				</div>
+
+				<div class="form-group">
+					<label for="loginPassword">Contraseña</label> <input
+						type="password" class="form-control" id="loginPassword"
+						placeholder="Contraseña" required>
+				</div>
+				<button type="submit" class="btn btn-primary mt-3">Login</button>
+			</div>
+		</form>
+
+		<script th:inline="javascript">
+
+			function enviarFormulario() {
+				var email = "jmf64@gcloud.ua.es";
+				var password = "123456";
+
+				var loginRequest = {
+					email: email,
+					password: password
+				};
+
+				$.ajax({
+					type: "POST",
+					contentType: "application/json",
+					url: "http://localhost:8081/customer/login",
+					data: JSON.stringify(loginRequest),
+					dataType: 'json',
+					success: function (response) {
+						// Manejar la respuesta del servidor según tus necesidades
+						console.log(response);
+					},
+					error: function (error) {
+						// Manejar errores si es necesario
+						console.error(error);
+					}
+				});
+			}
+    /*function validarFormulario() {
+        var email = document.getElementById("loginEmail").value;
+        var password = document.getElementById("loginPassword").value;
+
+        if (email === "" || password === "") {
+            alert("Por favor, complete todos los campos.");
+            return false;
+        }
+
+        // Puedes agregar más validaciones según tus necesidades.
+
+        return true; // Envía el formulario si todas las validaciones son exitosas.
+    }*/
+</script>
+
+		<form class="form-horizontal mt-4" onsubmit="return validarRegistro()">
+			<!-- Registrarse Form -->
+			<div class="form-group text-center">
+				<h2>Registrarse</h2>
+				<div class="row">
+					<div class="col-md-6">
+						<label for="regNombre">Nombre</label> <input type="text"
+							class="form-control" id="regNombre" placeholder="Nombre" required>
+					</div>
+					<div class="col-md-6">
+						<label for="regApellidos">Apellidos</label> <input type="text"
+							class="form-control" id="regApellidos" placeholder="Apellidos"
+							required>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<label for="regNIF">NIF</label> <input type="text"
+							class="form-control" id="regNIF" placeholder="NIF" required>
+					</div>
+					<div class="col-md-6">
+						<label for="regNacimiento">Fecha Nacimiento</label> <input
+							type="date" class="form-control" id="regNacimiento" required>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<label for="regPassword">Contraseña</label> <input type="password"
+							class="form-control" id="regPassword" placeholder="Contraseña"
+							required>
+					</div>
+					<div class="col-md-6">
+						<label for="regConfirmPassword">Confirmar Contraseña</label> <input
+							type="password" class="form-control" id="regConfirmPassword"
+							placeholder="Confirmar Contraseña" required>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<label for="regEmail">Email</label> <input type="email"
+							class="form-control" id="regEmail" placeholder="Email" required>
+					</div>
+					<div class="col-md-6">
+						<label for="regTlf">Teléfono</label> <input type="tel"
+							class="form-control" id="regTlf" placeholder="Teléfono" required>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<label for="regPais">País</label> <select class="form-control"
+							id="regPais" required>
+							<option>España</option>
+							<option>Italia</option>
+							<option>Francia</option>
+							<option>Portugal</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<label for="regGenero">Género</label> <select class="form-control"
+							id="regGenero" required>
+							<option>Male</option>
+							<option>Female</option>
+							<option>Other</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-check mt-2">
+					<input type="checkbox" class="form-check-input"
+						id="terminosCondiciones" required> <label
+						class="form-check-label" for="terminosCondiciones">Acepto
+						términos y condiciones</label>
+				</div>
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input"
+						id="recibirNotificaciones"> <label
+						class="form-check-label" for="recibirNotificaciones">Deseo
+						recibir notificaciones</label>
+				</div>
+				<button type="submit" class="btn btn-primary mt-3 mb-3">Darse
+					de alta</button>
+			</div>
+		</form>
+
+		<script>
+    function validarRegistro() {
+        // Puedes personalizar la función de validación según tus necesidades.
+        var nombre = document.getElementById("regNombre").value;
+        var apellidos = document.getElementById("regApellidos").value;
+        var nif = document.getElementById("regNIF").value;
+        var nacimiento = document.getElementById("regNacimiento").value;
+        var password = document.getElementById("regPassword").value;
+        var confirmPassword = document.getElementById("regConfirmPassword").value;
+        var email = document.getElementById("regEmail").value;
+        var telefono = document.getElementById("regTlf").value;
+        var pais = document.getElementById("regPais").value;
+        var genero = document.getElementById("regGenero").value;
+        var terminosCondiciones = document.getElementById("terminosCondiciones").checked;
+
+        if (nombre === "" || apellidos === "" || nif === "" || nacimiento === "" || password === "" || confirmPassword === "" || email === "" || telefono === "" || pais === "" || genero === "" || !terminosCondiciones) {
+            alert("Por favor, complete todos los campos obligatorios.");
+            return false;
+        }
+
+        // Puedes agregar más validaciones según tus necesidades.
+
+        return true; // Envía el formulario si todas las validaciones son exitosas.
+    }
+</script>
+
+
+	</div>
+
+	<footer th:replace="plantillas/template :: footer"></footer>
+</body>
+
+</html>
