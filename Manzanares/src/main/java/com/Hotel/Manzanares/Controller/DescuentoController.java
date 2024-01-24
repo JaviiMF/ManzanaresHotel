@@ -21,6 +21,11 @@ public class DescuentoController {
         return descuentoService.getDescuento(id);
     }
 
+    @GetMapping("/formDescuento")
+    public String formDescuento()
+    {
+        return "/views/webmaster/listCustomers";
+    }
     @PostMapping("/createDescuento")
     public void createDescuento(@RequestBody Descuento descuento){
         descuentoService.createDescuento(descuento);

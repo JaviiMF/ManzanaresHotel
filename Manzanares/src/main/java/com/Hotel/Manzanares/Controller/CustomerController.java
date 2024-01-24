@@ -3,6 +3,9 @@ package com.Hotel.Manzanares.Controller;
 import com.Hotel.Manzanares.Entity.Usuario;
 import com.Hotel.Manzanares.Request.LoginRequest;
 import com.Hotel.Manzanares.Service.CustomerService;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,13 +14,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import lombok.AllArgsConstructor;
 
-@RestController
+@Controller // @ResponseBody + @Controller
 @RequestMapping(("/customer"))
 @AllArgsConstructor
 public class CustomerController {
 
     private final CustomerService customerService;
 
+
+    @GetMapping("/list")
+    public String getUsuarios() {
+        return "/views/webmaster/listCustomers";
+    }
     @GetMapping("/{id}")
     public Optional<Usuario> getUsuario(@PathVariable Long id){
         return customerService.getUsuario(id);
