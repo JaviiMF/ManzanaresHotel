@@ -1,9 +1,24 @@
 <!DOCTYPE html>
-<html xmls:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head">
 <meta charset="UTF-8">
 <title>CRUD Clientes</title>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+			min-height: 100vh;
+		}
+
+		.container-fluid {
+			flex: 1;
+		}
+
+		footer {
+			margin-top: auto;
+		}
+	</style>
 </head>
 <body>
 	<!-- BARRA DE NAVEGACION -->
