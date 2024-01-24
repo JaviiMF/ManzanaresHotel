@@ -71,19 +71,19 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Boolean loginUsuario(LoginRequest loginRequest) {
-        Boolean encontrado = false;
+    public String loginUsuario(LoginRequest loginRequest) {
+        String tipo = "";
 
        try{
            Usuario usuario = customerRepository.findByUsuarioAndPass(loginRequest.getUsuario(), loginRequest.getPass());
            if(usuario != null){
-               encontrado = true;
+               tipo = usuario.getTipo();
            }
        } catch (Exception e) {
            System.out.println("Error en el login" + e.getMessage());
        }
 
-        return encontrado;
+        return tipo;
     }
 
     @Override

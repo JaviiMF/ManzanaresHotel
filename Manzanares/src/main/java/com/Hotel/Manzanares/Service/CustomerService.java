@@ -17,7 +17,7 @@ public interface CustomerService {
 
     void updateUsuario(String dni, Usuario usuario);
 
-    Boolean loginUsuario(LoginRequest loginRequest);
+    String loginUsuario(LoginRequest loginRequest);
 
     List<Usuario> getAllUsuarios();
 }

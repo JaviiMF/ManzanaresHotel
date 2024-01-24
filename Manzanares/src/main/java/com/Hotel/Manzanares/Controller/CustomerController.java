@@ -38,6 +38,7 @@ public class CustomerController {
     public String mostrarFormularioLogin(Model model) {
         System.out.println("Holaaaaaaaaaaa");
         model.addAttribute("usuario", new Usuario());
+        model.addAttribute("LoginRequest", new LoginRequest());
         return "login"; // Nombre de la vista Thymeleaf (sin extensión)
     }
 
@@ -57,7 +58,17 @@ public class CustomerController {
     }
 
     @PostMapping("/login")
-    public Boolean loginUsuario(@RequestBody LoginRequest loginRequest){
-        return customerService.loginUsuario(loginRequest);
+    public String loginUsuario(@ModelAttribute LoginRequest loginRequest){
+        String vista = "";
+
+        if(customerService.loginUsuario(loginRequest).equals("Recepcionista")){
+            vista = "views/recepcionista/clientes";
+        } else if (customerService.loginUsuario(loginRequest).equals("Webmaster")){
+            vista = "views/webmaster/habitaciones";
+        } else {
+            vista = "Home";
+        }
+
+        return vista;
     }
 }
