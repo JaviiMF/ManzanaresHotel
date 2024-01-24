@@ -26,6 +26,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void createUsuario(Usuario usuario) {
         try{
+            if(usuario.getTipo()==null){
+                usuario.setActivo(true);
+                usuario.setTipo("cliente");
+            }
+
             customerRepository.save(usuario);
         } catch (Exception e){
             System.out.println("Error al grabar al usuario" + e.getMessage());

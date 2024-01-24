@@ -77,14 +77,14 @@
     }*/
 </script>
 
-		<form class="form-horizontal mt-4" onsubmit="return validarRegistro()">
+		<form class="form-horizontal mt-4" action="#" th:action="@{createUsuario}" th:object="${usuario}" method="post" onsubmit="return validarRegistro()">
 			<!-- Registrarse Form -->
 			<div class="form-group text-center">
 				<h2>Registrarse</h2>
 				<div class="row">
 					<div class="col-md-6">
 						<label for="regNombre">Nombre</label> <input type="text"
-							class="form-control" id="regNombre" placeholder="Nombre" required>
+							class="form-control" id="regNombre" placeholder="Nombre" th:field="*{nombre}" required>
 					</div>
 					<div class="col-md-6">
 						<label for="regApellidos">Apellidos</label> <input type="text"
@@ -95,7 +95,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<label for="regNIF">NIF</label> <input type="text"
-							class="form-control" id="regNIF" placeholder="NIF" required>
+							class="form-control" id="regNIF" placeholder="NIF" th:field="*{dni}" required>
 					</div>
 					<div class="col-md-6">
 						<label for="regNacimiento">Fecha Nacimiento</label> <input
@@ -105,29 +105,29 @@
 				<div class="row">
 					<div class="col-md-6">
 						<label for="regPassword">Contraseña</label> <input type="password"
-							class="form-control" id="regPassword" placeholder="Contraseña"
+							class="form-control" id="regPassword" placeholder="Contraseña" th:field="*{contrasena}"
 							required>
 					</div>
 					<div class="col-md-6">
 						<label for="regConfirmPassword">Confirmar Contraseña</label> <input
-							type="password" class="form-control" id="regConfirmPassword"
+							type="password" class="form-control" id="regConfirmPassword" th:field="*{contrasena}"
 							placeholder="Confirmar Contraseña" required>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-6">
 						<label for="regEmail">Email</label> <input type="email"
-							class="form-control" id="regEmail" placeholder="Email" required>
+							class="form-control" id="regEmail" placeholder="Email" th:field="*{email}" required>
 					</div>
 					<div class="col-md-6">
 						<label for="regTlf">Teléfono</label> <input type="tel"
-							class="form-control" id="regTlf" placeholder="Teléfono" required>
+							class="form-control" id="regTlf" placeholder="Teléfono" th:field="*{telefono}" required>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-6">
 						<label for="regPais">País</label> <select class="form-control"
-							id="regPais" required>
+							id="regPais"  required>
 							<option>España</option>
 							<option>Italia</option>
 							<option>Francia</option>

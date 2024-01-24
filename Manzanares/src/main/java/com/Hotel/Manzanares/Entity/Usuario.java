@@ -1,8 +1,11 @@
 package com.Hotel.Manzanares.Entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.Objects;
 
@@ -23,8 +26,10 @@ public class Usuario {
     private String telefono;
     private String dni;
     private String direccion;
+    @ColumnDefault("cliente")
     private String tipo;
     private String horario;
+    @ColumnDefault("true")
     private Boolean activo;
 
     @Override

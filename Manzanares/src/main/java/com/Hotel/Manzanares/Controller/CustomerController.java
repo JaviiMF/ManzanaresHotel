@@ -3,15 +3,16 @@ package com.Hotel.Manzanares.Controller;
 import com.Hotel.Manzanares.Entity.Usuario;
 import com.Hotel.Manzanares.Request.LoginRequest;
 import com.Hotel.Manzanares.Service.CustomerService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import lombok.AllArgsConstructor;
 
-@RestController
+@Controller
 @RequestMapping(("/customer"))
 @AllArgsConstructor
 public class CustomerController {
@@ -23,9 +24,21 @@ public class CustomerController {
         return customerService.getUsuario(id);
     }
 
-    @PostMapping("/createUsuario")
+    /*@PostMapping("/createUsuario")
     public void createUsuario(@RequestBody Usuario usuario){
         customerService.createUsuario(usuario);
+    }
+*/
+    @PostMapping("/createUsuario")
+    public String createUsuario(@ModelAttribute Usuario usuario, Model model){
+        customerService.createUsuario(usuario);
+        return "/views/hotel/habitaciones";
+    }
+    @GetMapping("/login")
+    public String mostrarFormularioLogin(Model model) {
+        System.out.println("Holaaaaaaaaaaa");
+        model.addAttribute("usuario", new Usuario());
+        return "login"; // Nombre de la vista Thymeleaf (sin extensión)
     }
 
     @DeleteMapping("/deleteUsuario/{dni}")
