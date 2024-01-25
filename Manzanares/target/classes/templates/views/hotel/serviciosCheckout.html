@@ -56,7 +56,7 @@
 
 					<td>
 						<div style="text-align: center; margin-top: 10px;">
-							<a th:href="@{/views/hotel/checkout(gama=${param.gama}, num=${param.num}, numcamas=${param.numcamas}, mascotas=${param.mascotas}, precio=${param.precio}, servicioDesc=${servicio.descripcion}, servicioPrecio=${servicio.precio}, servicioHorario=${servicio.horario})}">>
+							<a th:href="@{/customer/checkout(gama=${param.gama}, num=${param.num}, numcamas=${param.numcamas}, mascotas=${param.mascotas}, precio=${param.precio}, servicioDesc=${servicio.descripcion}, servicioPrecio=${servicio.precio}, servicioHorario=${servicio.horario})}">>
 								<button type="submit" class="btn btn-primary mt-1">Checkout con servicio</button>
 							</a>
 						</div>
@@ -68,7 +68,7 @@
 	</div>
 
 	<div style="text-align: center; padding-bottom: 40px;">
-		<a th:href="@{/views/hotel/checkout(gama=${param.gama}, num=${param.num}, numcamas=${param.numcamas}, mascotas=${param.mascotas}, precio=${param.precio})}">
+		<a th:href="@{/customer/checkout(gama=${param.gama}, num=${param.num}, numcamas=${param.numcamas}, mascotas=${param.mascotas}, precio=${param.precio})}">
 			<button type="submit" class="btn btn-primary mt-1">Checkout sin servicios</button>
 		</a>
 	</div>

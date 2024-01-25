@@ -42,6 +42,15 @@ public class CustomerController {
         return "login"; // Nombre de la vista Thymeleaf (sin extensión)
     }
 
+    @GetMapping("/checkout")
+    public String mostrarFormularioRegistro(Model model) {
+        model.addAttribute("usuario", new Usuario());
+        model.addAttribute("LoginRequest", new LoginRequest());
+        return "views/hotel/checkout";
+    }
+
+
+
     @DeleteMapping("/deleteUsuario/{dni}")
     public void deleteUsuario(@PathVariable String dni){
         customerService.deleteUsuario(dni);
