@@ -47,7 +47,9 @@
 							</tr>
 						</table>
 
-						<button type="submit" class="btn btn-primary mt-1 mb-4">Alquilar</button>
+						<a th:href="@{'/servicio/allCheckout?gama=' + ${habitacion.gama} + '&num=' + ${habitacion.num} + '&numcamas=' + ${habitacion.numcamas} + '&mascotas=' + ${habitacion.mascotas} + '&precio=' + ${habitacion.precio}}">
+							<button type="button" class="btn btn-primary mt-1 mb-4">Alquilar</button>
+						</a>
 					</td>
 
 					<td><img src="https://i.ibb.co/FKXyp0p/hotel1.jpg" alt="hotel1" border="0"></td>

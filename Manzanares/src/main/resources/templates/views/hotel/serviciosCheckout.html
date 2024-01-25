@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantillas/template :: head">
+</head>
+<body>
+	<header th:replace="plantillas/template :: header"></header>
+
+	<div class="container">
+
+		<div style="text-align: center;">
+			<h2>Habitación Seleccionada</h2>
+			<table style="margin: auto;">
+				<tr>
+					<td><h3 th:text="${param.gama}"></h3></td>
+				</tr>
+				<tr>
+					<td><p>Número: </p></td>
+					<td><p th:text="${param.num}"></p></td>
+				</tr>
+				<tr>
+					<td><p>Camas: </p></td>
+					<td><p th:text="${param.numcamas}"></p></td>
+				</tr>
+				<tr>
+					<td><p>Mascotas: </p></td>
+					<td><p th:text="${param.mascotas ? 'Sí' : 'No'}"></p></td>
+				</tr>
+				<tr>
+					<td><p>Precio: </p></td>
+					<td><p th:text="${param.precio}"></p></td>
+				</tr>
+			</table>
+		</div>
+
+		<h1 style="text-align: center;">Seleccionar Servicios</h1>
+		<div style="padding-bottom: 40px;">
+			<table style="margin: 0 auto;">
+				<tr th:each="servicio: ${servicios}">
+					<td style="padding-right: 200px;">
+						<table>
+							<tr>
+								<td><h3 th:text="${servicio.descripcion}"></h3></td>
+							</tr>
+							<tr>
+								<td><p>Precio: </p></td>
+								<td><p th:text="${servicio.precio}"></p></td>
+							</tr>
+							<tr>
+								<td><p>Horario: </p></td>
+								<td><p th:text="${servicio.horario}"></p></td>
+							</tr>
+						</table>
+					</td>
+
+					<td><img src="https://i.ibb.co/MCrCCFj/gimnasio.png" alt="gimnasio" border="0" width="250"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<footer th:replace="plantillas/template :: footer"></footer>
+</body>
+</html>
+

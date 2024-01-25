@@ -44,4 +44,11 @@ public class ServicioController {
         return "views/hotel/servicios";
     }
 
+    @GetMapping("/allCheckout")
+    public String getAllServiciosCheckout(Model model) {
+        List<Servicio> servicios = servicioService.getAllServicios();
+        model.addAttribute("servicios", servicios);
+        return "views/hotel/serviciosCheckout";
+    }
+
 }
