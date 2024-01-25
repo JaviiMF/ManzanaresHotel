@@ -1,5 +1,6 @@
 package com.Hotel.Manzanares.ServiceImpl;
 
+import com.Hotel.Manzanares.Entity.Habitacion;
 import com.Hotel.Manzanares.Entity.Servicio;
 import com.Hotel.Manzanares.Repository.ServicioRepository;
 import com.Hotel.Manzanares.Service.ServicioService;
@@ -7,6 +8,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -55,5 +57,10 @@ public class ServicioServiceImpl implements ServicioService {
         }catch (Exception e){
             System.out.println("Error al modificar el servcio" + e.getMessage());
         }
+    }
+
+    @Override
+    public List<Servicio> getAllServicios() {
+        return servicioRepository.findAll();
     }
 }

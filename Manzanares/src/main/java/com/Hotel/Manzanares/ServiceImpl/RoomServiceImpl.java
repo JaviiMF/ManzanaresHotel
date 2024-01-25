@@ -1,6 +1,7 @@
 package com.Hotel.Manzanares.ServiceImpl;
 
 import com.Hotel.Manzanares.Entity.Habitacion;
+import com.Hotel.Manzanares.Entity.Usuario;
 import com.Hotel.Manzanares.Repository.ReserveRepository;
 import com.Hotel.Manzanares.Repository.RoomRepository;
 import com.Hotel.Manzanares.Request.DispRequest;
@@ -53,5 +54,10 @@ public class RoomServiceImpl implements RoomService {
         } catch (Exception e){
             System.out.println("Error eliminando la habitacion" + e.getMessage());
         }
+    }
+
+    @Override
+    public List<Habitacion> getAllHabitaciones() {
+        return roomRepository.findAll();
     }
 }

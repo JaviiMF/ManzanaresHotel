@@ -22,4 +22,9 @@ public class HotelController {
 	public String contact() {
 		return "/views/hotel/contact";
 	}
+
+	@GetMapping("/checkout")
+	public String checkout() {
+		return "/views/hotel/checkout";
+	}
 }
