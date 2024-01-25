@@ -4,12 +4,14 @@ package com.Hotel.Manzanares.Controller;
 import com.Hotel.Manzanares.Entity.Descuento;
 import com.Hotel.Manzanares.Service.DescuentoService;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping(("/descuento"))
 @AllArgsConstructor
 public class DescuentoController {
@@ -24,11 +26,13 @@ public class DescuentoController {
     @GetMapping("/formDescuento")
     public String formDescuento()
     {
-        return "/views/webmaster/listCustomers";
+        return "/views/webmaster/createOferta";
     }
     @PostMapping("/createDescuento")
-    public void createDescuento(@RequestBody Descuento descuento){
+    public String  createDescuento(@ModelAttribute Descuento descuento, Model model){
         descuentoService.createDescuento(descuento);
+
+        return "/views/webmaster/createOferta";
     }
 
     @DeleteMapping("/deleteDescuento/{id}")
@@ -40,7 +44,10 @@ public class DescuentoController {
         descuentoService.updateDescuento(id,descuento);
     }
     @GetMapping("/allDescuentos")
-    public List<Descuento> getAllDescuentos(){
-        return descuentoService.getAllDescuentos();
+    public String getAllDescuentos(Model model){
+        List<Descuento> d = descuentoService.getAllDescuentos();
+        model.addAttribute("descuento", d);
+
+        return "/views/webmaster/listOferta";
     }
 }

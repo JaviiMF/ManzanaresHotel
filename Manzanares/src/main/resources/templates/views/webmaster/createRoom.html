@@ -1,38 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="plantillas/template :: head">
+    <style>
+        .one-half,
+        .one-third {
+            position: relative;
+            margin-right: 4%;
+            float: left;
+            margin-bottom: 20px;
+        }
+        .one-half { width: 48%; }
+        .one-third { width: 30.66%; }
+        .last {
+            margin-right: 0 !important;
+            clear: right;
+        }
+        @media only screen and (max-width: 767px) {
+            .one-half, .one-third {
+                width: 100%;
+                margin-right: 0;
+            }
+        }
+    </style>
 </head>
+
 <body>
+    <header th:replace="plantillas/template :: header">
+        <h1 class="text-center">Inicia Sesión</h1>
+    </header>
 
-<div class="form-group">
-    <title>Crear Habitaciones</title>
-    <h2>En esta página puedes crear las habitaciones del Hotel.</h2>
+    <div class="container">
+        <h1>Crear Habitaciones</h1>
+        <h2>En esta página puedes crear las habitaciones del Hotel.</h2>
 
-    <form method="post" th:action="@{/descuento/createDescuento}" >
-        <label for="num">Numero de Habitacion</label>
-        <input class="form-control" id="num" name="num" type="number" min="1"/>
+        <form method="post" action="#" class="row justify-content-center"  th:action="@{/room/createHabitacion}" th:object="${habitacion}">
+            <div class="form-group col-md-4 mb-3">
+                <label for="num">Numero de Habitacion</label>
+                <input size="30" class="form-control" id="num" name="num" th:field="*{num}" type="number" min="1"/>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="extra">Numero de Camas</label>
+                <input size="30" class="form-control mb-3" id="extra" type="number" th:field="*{numcamas}" min="1">
+            </div>
+            <div class="form-group col-md-4 last">
+                <label for="m2">M2</label>
+                <input size="30" class="form-control" id="m2" type="number" th:field="*{m2}" min="1">
+            </div>
 
-        <label for="desc">Descripcion</label>
-        <textarea id="desc" name="desc" rows="4" cols="50"></textarea>
+            <div class="form-group col-md-6">
+                <label for="gama">Gama</label>
+                <input size="30" class="form-control" id="gama" name="gama" th:field="*{gama}" type="text">
+            </div>
+            <div class="form-group col-md-6" >
+                <label for="precio">Precio</label>
+                <input size="30" class="form-control" id="precio" name="precio" th:field="*{precio}" type="number" min="0.00" max="1000.00" step="0.01" >
+            </div>
 
-        <label for="disp">Disponibilidad</label>
-        <input class="form-control" id="disp" name="disp" type="text" >
+            <div class="form-group col-md-6">
+                <input size="30" class="form-check-input col-md-6" id="mascotas" th:field="*{mascotas}" name="mascotas" type="checkbox" >
+                <label for="mascotas">Mascotas</label>
+            </div>
+            <div class="form-group col-md-6">
+                <input size="30" class="form-check-input col-md-6" id="disponible"  th:field="*{activa}" name="disponible" type="checkbox" >
+                <label for="disponible">Disponible</label>
+            </div>
+            <div class="justify-content-between">
+                <button type="submit" class="btn btn-primary">Crear Oferta</button>
+            </div>
+        </form>
+    </div>
 
-        <label for="extra">Extras</label>
-        <input class="form-control" id="extra" name="extra" type="text" >
-
-        <label for="img">Adjuntar Imagen</label>
-        <input class="form-control" id="img" name="img" type="file" accept="image/*" >
-
-    </form>
-    <button type="submit" class="btn btn-primary">Crear Oferta</button>
-</div>
 
 
-<script type="text/javascript">
-    let datePickerId;
-    datePickerId.max = new Date().toISOString().split("T")[0];
-</script>
 </body>
 </html>

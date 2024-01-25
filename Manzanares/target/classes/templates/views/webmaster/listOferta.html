@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="plantillas/template :: head">
+<head th:replace="plantillas/templateWebmaster :: head">
 </head>
 <body>
 
 <meta charset="UTF-8">
-<header th:replace="~{plantillas/template :: header}"></header>
+<header th:replace="~{plantillas/templateWebmaster :: headerWebmaster}"></header>
 <div class="container pt-4">
     <h1>Listado de Ofertas</h1>
     <h2>En esta página puedes acceder a todas las ofertas del Hotel.</h2>
@@ -18,12 +18,18 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Precio</th>
+                        <th>Porcentaje</th>
+                        <th>Descripcion</th>
                     </tr>
                     </thead>
-                    <tbody id="tabla-body">
-                    </tbody>
+                        <tr th:each="descuento: ${descuento}">
+                            <td th:text="${descuento.porcentaje}"></td>
+                            <td th:text="${descuento.descripcion}"></td>
+                            <td>
+                                <button class="btn btn-danger btn-xs"
+                                        th:onclick="'del(\'/descuento/deleteDescuento/' + ${descuento.id} + '\')'">Borrar</button>
+                            </td>
+                        </tr>
                 </table>
 
             </div>
@@ -31,45 +37,19 @@
     </div>
 </div>
 
-<script>
-    // Realizar la solicitud GET a la API de backend
-    fetch('http://localhost:8081/customer/all')
-        .then(response => response.json())
-        .then(data => {
-            // Manipular los datos recibidos y construir la tabla
-            const tablaBody = document.getElementById('tabla-body');
 
-            data.forEach(oferta => {
-                const fila = document.createElement('tr');
 
-                const nombre = document.createElement('td');
-                nombre.textContent = usuario.nombre;
-                fila.appendChild(nombre);
 
-                const precio = document.createElement('td');
-                precio.textContent = usuario.apellidos;
-                fila.appendChild(precio);
 
-                const email = document.createElement('td');
-                email.textContent = usuario.email;
-                fila.appendChild(email);
-
-                const nif = document.createElement('td');
-                nif.textContent = usuario.nif;
-                fila.appendChild(nif);
-
-                const telefono = document.createElement('td');
-                telefono.textContent = usuario.telefono;
-                fila.appendChild(telefono);
-
-                tablaBody.appendChild(fila);
-            });
-        })
-        .catch(error => {
-            console.error('Error al obtener los datos:', error);
-        });
+<script type="text/javascript">
+    function del(urlBorrar) {
+        if (confirm('¿Estás seguro/a de que quieres borrar la Oferta?')) {
+            fetch(urlBorrar, {
+                method: 'DELETE'
+            }).then((res) => location.reload());
+        }
+    }
 </script>
 
-<footer th:replace="~{plantillas/template :: footer}"></footer>
 </body>
 </html>

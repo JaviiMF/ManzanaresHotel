@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmls:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head">
 <meta charset="UTF-8">
 <title>CRUD Clientes</title>
@@ -30,20 +30,20 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<table style="color: white; float: right; margin-top: 10px;">
 						<tr>
-							<td><a class="nav-link active" aria-current="page" th:href="@{/views/webmaster/habitaciones}" style="color: white;">Listado de Habitaciones</a></td>
-							<td><a class="nav-link" aria-current="page" th:href="@{/views/webmaster/crearHabitaciones}" style="color: white;">Crear Habitaciones</a></td>
+							<td><a class="nav-link active" aria-current="page" th:href="@{/room/all}" style="color: white;">Listado de Habitaciones</a></td>
+							<td><a class="nav-link" aria-current="page" th:href="@{/room/formHabitacion}" style="color: white;">Crear Habitaciones</a></td>
 						</tr>
 						<tr>
-							<td><a class="nav-link" aria-current="page" th:href="@{/views/webmaster/ofertas}" style="color: white;">Listado de Ofertas</a></td>
-							<td><a class="nav-link" aria-current="page" th:href="@{/views/webmaster/crearOfertas}" style="color: white;">Crear Ofertas</a></td>
+							<td><a class="nav-link" aria-current="page" th:href="@{/descuento/allDescuentos}" style="color: white;">Listado de Ofertas</a></td>
+							<td><a class="nav-link" aria-current="page" th:href="@{/descuento/formOferta}" style="color: white;">Crear Ofertas</a></td>
 						</tr>
 						<tr>
-							<td><a class="nav-link" aria-current="page" th:href="@{/views/webmaster/usuarios}" style="color: white;">Listado de Usuarios</a></td>
-							<td><a class="nav-link" aria-current="page" th:href="@{/views/webmaster/crearUsuarios}" style="color: white;">Crear Usuarios</a></td>
+							<td><a class="nav-link" aria-current="page" th:href="@{/customer/all}" style="color: white;">Listado de Usuarios</a></td>
+							<td><a class="nav-link" aria-current="page" th:href="@{/customer/formUsuario}" style="color: white;">Crear Usuarios</a></td>
 						</tr>
 						<tr>
-							<td><a class="nav-link" aria-current="page" th:href="@{/views/webmaster/servicios}" style="color: white;">Listado de Servicios</a></td>
-							<td><a class="nav-link" aria-current="page" th:href="@{/views/webmaster/crearServicios}" style="color: white;">Crear Servicios</a></td>
+							<td><a class="nav-link" aria-current="page" th:href="@{/servicio/all}" style="color: white;">Listado de Servicios</a></td>
+							<td><a class="nav-link" aria-current="page" th:href="@{/servicio/formService}" style="color: white;">Crear Servicios</a></td>
 						</tr>
 					</table>
 				</div>
@@ -59,7 +59,7 @@
     <script type="text/javascript" th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-</footer>
+
 
 
 </body>

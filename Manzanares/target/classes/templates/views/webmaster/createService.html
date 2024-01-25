@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="plantillas/template :: head">
+<body>
+<header th:replace="~{plantillas/template :: header}"></header>
+<div class="container pt-4">
+    <title>Crear Servicios</title>
+    <h2>En esta página puedes crear los servicios de las habitaciones.</h2>
+
+    <form method="post" th:action="@{/servicio/createServicio}" th:object="${servicio}">
+        <label for="precio">Precio</label>
+        <input class="form-control" id="precio" name="precio" type="number"
+               min="0" max="1000" step="0.01" th:field="*{precio}"/>
+
+        <label for="horario">Horario</label>
+        <input class="form-control" id="horario" name="horario" type="date" th:field="*{horario}"></input>
+
+        <label for="desc">Descripcion</label>
+        <textarea id="desc" name="desc" rows="4" cols="50" th:field="*{descripcion}"></textarea>
+
+    </form>
+    <button type="submit" class="btn btn-primary">Crear Servicio</button>
+</div>
+
+</body>
+</html>

@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,6 +19,9 @@ public class ServicioServiceImpl implements ServicioService {
     public Optional<Servicio> getServicio(Long id) {
         return servicioRepository.findById(id);
     }
+
+    @Override
+    public List<Servicio> getAllServicio() { return servicioRepository.findAll(); }
 
     @Override
     public void createService(Servicio servicio) {

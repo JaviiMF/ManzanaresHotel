@@ -29,6 +29,11 @@ public class CustomerController {
         customerService.createUsuario(usuario);
     }
 */
+    @GetMapping("/formUsuario")
+    public String formUsuario()
+    {
+        return "/views/webmaster/createCustomer";
+    }
     @PostMapping("/createUsuario")
     public String createUsuario(@ModelAttribute Usuario usuario, Model model){
         customerService.createUsuario(usuario);
@@ -52,8 +57,13 @@ public class CustomerController {
     }
 
     @GetMapping("/all")
-    public List<Usuario> getAllUsuarios(){
-        return customerService.getAllUsuarios();
+    public String getAllUsuarios(Model model)
+    {
+
+        List<Usuario> u = customerService.getAllUsuarios();
+        model.addAttribute("usuario", u);
+
+        return "/views/webmaster/listCustomers";
     }
 
     @PostMapping("/login")

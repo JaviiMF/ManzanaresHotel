@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="plantillas/template :: head">
+<head th:replace="plantillas/templateWebmaster :: head">
 </head>
 <body>
 
 <meta charset="UTF-8">
-<header th:replace="~{plantillas/template :: header}"></header>
+<header th:replace="~{plantillas/templateWebmaster :: headerWebmaster}"></header>
 <div class="container pt-4">
     <h1>Listado de Usuarios</h1>
     <h2>En esta página puedes acceder a todos los datos sobre los usuarios y sus roles.</h2>
@@ -19,12 +19,32 @@
                     <thead>
                     <tr>
                         <th>Número</th>
+                        <th>Gama</th>
+                        <th>Numero de camas</th>
+                        <th>Precio</th>
                         <th>Disponibilidad</th>
-                        <th>Extras</th>
-                        <th>Disponibles</th>
+                        <th>Mascotas</th>
                     </tr>
                     </thead>
-                    <tbody id="tabla-body">
+                    <tbody>
+                        <tr th:each="habitacion: ${habitaciones}">
+                            <td th:text="${habitacion.num}"></td>
+                            <td th:text="${habitacion.gama}"></td>
+                            <td th:text="${habitacion.numcamas}"></td>
+                            <td th:text="${habitacion.precio}"></td>
+                            <td>
+                                <span th:style=" 'color : green'" th:if="${habitacion.activa}">Habitacion activa</span>
+                                <span th:style=" 'color : red'"  th:unless="${habitacion.activa}">Habitacion no activa</span>
+                            </td>
+                            <td>
+                                <span th:style=" 'color : green'" th:if="${habitacion.mascotas}">Permitidas</span>
+                                <span th:style=" 'color : red'"  th:unless="${habitacion.mascotas}">No permitidas</span>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-xs"
+                                        th:onclick="'del(\'/room/deleteHabitacion/' + ${habitacion.id} + '\')'">Borrar</button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 
@@ -33,82 +53,19 @@
     </div>
 </div>
 
-<script>
-    // Realizar la solicitud GET a la API de backend
-    fetch('http://localhost:8081/room/disponibles')
-        .then(response => response.json())
-        .then(data => {
-            // Manipular los datos recibidos y construir la tabla
-            const tablaBody = document.getElementById('tabla-body');
 
-            data.forEach(habitacion => {
-                const fila = document.createElement('tr');
 
-                const numero = document.createElement('td');
-                numero.textContent = habitacion.numero;
-                fila.appendChild(numero);
 
-                const disponibilidad = document.createElement('td');
-                disponibilidad.textContent = habitacion.disponibilidad;
-                fila.appendChild(disponibilidad);
 
-                const extras = document.createElement('td');
-                extras.textContent = habitacion.extras;
-                fila.appendChild(extras);
-
-                const nif = document.createElement('td');
-                nif.textContent = habitacion.nif;
-                fila.appendChild(nif);
-
-                // Botones
-                const botonBloquear = document.createElement('button');
-                botonBloquear.textContent = 'Bloquear';
-                botonBloquear.addEventListener('click', () => {
-                    // Lógica para editar el usuario (puedes implementar tu propia lógica aquí)
-                    console.log('Bloqeuar usuario:', usuario);
-
-                });
-
-                const celdaBloquear = document.createElement('td');
-                celdaEditar.appendChild(botonEditar);
-                fila.appendChild(celdaEditar);
-
-                // Botones
-                const botonEditar = document.createElement('button');
-                botonEditar.textContent = 'Editar';
-                botonEditar.addEventListener('click', () => {
-                    // Lógica para editar el usuario (puedes implementar tu propia lógica aquí)
-                    console.log('Editar usuario:', usuario);
-
-                });
-
-                const celdaEditar = document.createElement('td');
-                celdaEditar.appendChild(botonEditar);
-                fila.appendChild(celdaEditar);
-
-                const botonEliminar = document.createElement('button');
-                botonEliminar.textContent = 'Eliminar';
-                botonEliminar.addEventListener('click', () => {
-                    // Lógica para eliminar el usuario (puedes implementar tu propia lógica aquí)
-                    console.log('Eliminar usuario:', usuario);
-
-                });
-
-                const celdaEliminar = document.createElement('td');
-                celdaEliminar.appendChild(botonEliminar);
-                fila.appendChild(celdaEliminar);
-
-                // Agregar fila a la tabla
-                tablaBody.appendChild(fila);
-
-                tablaBody.appendChild(fila);
-            });
-        })
-        .catch(error => {
-            console.error('Error al obtener los datos:', error);
-        });
+<script type="text/javascript">
+    function del(urlBorrar) {
+        if (confirm('¿Estás seguro/a de que quieres borrar la Habitacion?')) {
+            fetch(urlBorrar, {
+                method: 'DELETE'
+            }).then((res) => location.reload());
+        }
+    }
 </script>
 
-<footer th:replace="~{plantillas/template :: footer}"></footer>
 </body>
 </html>

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="plantillas/template :: head">
+<head th:replace="plantillas/templateWebmaster :: head">
 </head>
 <body>
 
 <meta charset="UTF-8">
-    <header th:replace="~{plantillas/template :: header}"></header>
+<header th:replace="~{plantillas/templateWebmaster :: headerWebmaster}"></header>
     <div class="container pt-4">
         <h1>Listado de Usuarios</h1>
         <h2>En esta página puedes acceder a todos los datos sobre los usuarios y sus roles.</h2>
@@ -19,13 +19,33 @@
                         <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Apellidos</th>
                             <th>Email</th>
-                            <th>Nif</th>
-                            <th>Teléfono</th>
+                            <th>Telefono</th>
+                            <th>DNI</th>
+                            <th>Direccion</th>
+                            <th>Tipo</th>
+                            <th>Horario</th>
+                            <th>Estado</th>
                         </tr>
                         </thead>
-                        <tbody id="tabla-body">
+                        <tbody>
+                        <tr th:each="usuario: ${usuario}">
+                            <td th:text="${usuario.nombre}"></td>
+                            <td th:text="${usuario.email}"></td>
+                            <td th:text="${usuario.telefono}"></td>
+                            <td th:text="${usuario.dni}"></td>
+                            <td th:text="${usuario.direccion}"></td>
+                            <td th:text="${usuario.tipo}"></td>
+                            <td th:text="${usuario.horario}"></td>
+                            <td>
+                                <span th:style=" 'color : green'" th:if="${usuario.activo}">Activo</span>
+                                <span th:style=" 'color : red'"  th:unless="${usuario.activo}">No Activo</span>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-xs"
+                                        th:onclick="'del(\'/customer/deleteUsuario/' + ${usuario.dni} + '\')'">Borrar</button>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
 
@@ -34,45 +54,19 @@
         </div>
     </div>
 
-    <script>
-        // Realizar la solicitud GET a la API de backend
-        fetch('http://localhost:8081/customer/all')
-            .then(response => response.json())
-            .then(data => {
-                // Manipular los datos recibidos y construir la tabla
-                const tablaBody = document.getElementById('tabla-body');
 
-                data.forEach(usuario => {
-                    const fila = document.createElement('tr');
 
-                    const nombre = document.createElement('td');
-                    nombre.textContent = usuario.nombre;
-                    fila.appendChild(nombre);
 
-                    const apellidos = document.createElement('td');
-                    apellidos.textContent = usuario.apellidos;
-                    fila.appendChild(apellidos);
 
-                    const email = document.createElement('td');
-                    email.textContent = usuario.email;
-                    fila.appendChild(email);
+<script type="text/javascript">
+    function del(urlBorrar) {
+        if (confirm('¿Estás seguro/a de que quieres borrar el Usuario?')) {
+            fetch(urlBorrar, {
+                method: 'DELETE'
+            }).then((res) => location.reload());
+        }
+    }
+</script>
 
-                    const nif = document.createElement('td');
-                    nif.textContent = usuario.nif;
-                    fila.appendChild(nif);
-
-                    const telefono = document.createElement('td');
-                    telefono.textContent = usuario.telefono;
-                    fila.appendChild(telefono);
-
-                    tablaBody.appendChild(fila);
-                });
-            })
-            .catch(error => {
-                console.error('Error al obtener los datos:', error);
-            });
-    </script>
-
-    <footer th:replace="~{plantillas/template :: footer}"></footer>
 </body>
 </html>
