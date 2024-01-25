@@ -62,6 +62,10 @@
 			</table>
 		</div>
 
+		<div class="text-center pt-4">
+			<h2>Precio Total: <span th:text="${param.precio}"></span></h2>
+		</div>
+
 		<form class="form-horizontal mt-4" action="#" th:action="@{createUsuario}" th:object="${usuario}" method="post" onsubmit="return validarRegistro()">
 			<!-- Registrarse Form -->
 			<div class="form-group text-center">
@@ -72,19 +76,19 @@
 																	 class="form-control" id="regNombre" placeholder="Nombre" th:field="*{nombre}" required>
 					</div>
 					<div class="col-md-6">
-						<label for="regApellidos">Apellidos</label> <input type="text"
-																		   class="form-control" id="regApellidos" placeholder="Apellidos"
-																		   required>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
 						<label for="regNIF">NIF</label> <input type="text"
 															   class="form-control" id="regNIF" placeholder="NIF" th:field="*{dni}" required>
 					</div>
+
+				</div>
+				<div class="row">
 					<div class="col-md-6">
-						<label for="regNacimiento">Fecha Nacimiento</label> <input
-							type="date" class="form-control" id="regNacimiento" required>
+						<label for="fechaEntrada">Fecha Entrada</label> <input
+							type="date" class="form-control" id="fechaEntrada" required>
+					</div>
+					<div class="col-md-6">
+						<label for="fechaFin">Fecha Salida</label> <input
+							type="date" class="form-control" id="fechaFin" required>
 					</div>
 				</div>
 				<div class="row">
