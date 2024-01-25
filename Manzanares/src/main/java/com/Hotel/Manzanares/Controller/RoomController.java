@@ -29,7 +29,6 @@ public class RoomController {
 
     @GetMapping("/all")
     public String getAllHabitaciones(Model model) {
-        System.out.println("saleeee");
         List<Habitacion> habitaciones = roomService.getAllHabitaciones();
         model.addAttribute("habitaciones", habitaciones);
         return "views/hotel/habitaciones";
