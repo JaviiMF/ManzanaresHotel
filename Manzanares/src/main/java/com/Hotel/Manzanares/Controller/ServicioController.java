@@ -1,11 +1,14 @@
 package com.Hotel.Manzanares.Controller;
 
+import com.Hotel.Manzanares.Entity.Habitacion;
 import com.Hotel.Manzanares.Entity.Servicio;
 import com.Hotel.Manzanares.Repository.ServicioRepository;
 import com.Hotel.Manzanares.Service.ServicioService;
 import lombok.AllArgsConstructor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -31,6 +34,13 @@ public class ServicioController {
     @PutMapping("/updateServicio/{id}")
     public void updateServicio(@PathVariable Long id,@RequestBody Servicio servicio){
         servicioService.updateServicio(id,servicio);
+    }
+
+    @GetMapping("/all")
+    public String getAllServicios(Model model) {
+        List<Servicio> servicios = servicioService.getAllServicios();
+        model.addAttribute("servicios", servicios);
+        return "views/hotel/servicios";
     }
 
 }
