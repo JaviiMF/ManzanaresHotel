@@ -7,7 +7,7 @@
 
 	<div class="container">
 
-		<div style="text-align: center;">
+		<div style="text-align: left;">
 			<h2>Habitación Seleccionada</h2>
 			<table style="margin: auto;">
 				<tr>
@@ -53,10 +53,26 @@
 					</td>
 
 					<td><img src="https://i.ibb.co/MCrCCFj/gimnasio.png" alt="gimnasio" border="0" width="250"></td>
+
+					<td>
+						<div style="text-align: center; margin-top: 10px;">
+							<a th:href="@{/views/hotel/checkout(gama=${param.gama}, num=${param.num}, numcamas=${param.numcamas}, mascotas=${param.mascotas}, precio=${param.precio}, servicioDesc=${servicio.descripcion}, servicioPrecio=${servicio.precio}, servicioHorario=${servicio.horario})}">>
+								<button type="submit" class="btn btn-primary mt-1">Checkout con servicio</button>
+							</a>
+						</div>
+					</td>
+
 				</tr>
 			</table>
 		</div>
 	</div>
+
+	<div style="text-align: center; padding-bottom: 40px;">
+		<a th:href="@{/views/hotel/checkout(gama=${param.gama}, num=${param.num}, numcamas=${param.numcamas}, mascotas=${param.mascotas}, precio=${param.precio})}">
+			<button type="submit" class="btn btn-primary mt-1">Checkout sin servicios</button>
+		</a>
+	</div>
+
 
 	<footer th:replace="plantillas/template :: footer"></footer>
 </body>
