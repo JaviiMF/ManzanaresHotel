@@ -1,9 +1,7 @@
 package com.Hotel.Manzanares.Entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
@@ -11,6 +9,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Usuario")
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class Usuario {

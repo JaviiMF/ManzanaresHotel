@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping(("/servicio"))
 @AllArgsConstructor
 public class ServicioController {
@@ -35,20 +35,6 @@ public class ServicioController {
     @PutMapping("/updateServicio/{id}")
     public void updateServicio(@PathVariable Long id,@RequestBody Servicio servicio){
         servicioService.updateServicio(id,servicio);
-    }
-
-    @GetMapping("/all")
-    public String getAllServicios(Model model) {
-        List<Servicio> servicios = servicioService.getAllServicios();
-        model.addAttribute("servicios", servicios);
-        return "views/hotel/servicios";
-    }
-
-    @GetMapping("/allCheckout")
-    public String getAllServiciosCheckout(Model model) {
-        List<Servicio> servicios = servicioService.getAllServicios();
-        model.addAttribute("servicios", servicios);
-        return "views/hotel/serviciosCheckout";
     }
 
 }

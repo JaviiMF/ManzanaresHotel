@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(("/room"))
 @AllArgsConstructor
 public class RoomController {
@@ -26,11 +26,4 @@ public class RoomController {
 
     @PostMapping("/disponibles")
     public List<Habitacion> getHabitacionesDisponibles(@RequestBody DispRequest dispRequest) {return roomService.getHabitacionesDisponibles(dispRequest); }
-
-    @GetMapping("/all")
-    public String getAllHabitaciones(Model model) {
-        List<Habitacion> habitaciones = roomService.getAllHabitaciones();
-        model.addAttribute("habitaciones", habitaciones);
-        return "views/hotel/habitaciones";
-    }
 }
